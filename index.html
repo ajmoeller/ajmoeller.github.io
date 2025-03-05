@@ -3,224 +3,318 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aaron Moeller | Developer Resources</title>
+    <title>Aaron Moeller | Developer</title>
     <style>
         :root {
-            --primary: #0f172a;
-            --secondary: #334155;
-            --accent: #3b82f6;
-            --text: #f8fafc;
-            --background: #f1f5f9;
-            --card-bg: #ffffff;
-            --border: #e2e8f0;
+            --primary: #0b0b1a;
+            --secondary: #170b28;
+            --neon-pink: #ff2a6d;
+            --neon-blue: #05d9e8;
+            --neon-purple: #bd00ff;
+            --text: #ffffff;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-family: 'Orbitron', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        @font-face {
+            font-family: 'Orbitron';
+            src: url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap');
         }
 
         body {
-            background-color: var(--background);
-            color: var(--secondary);
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        header {
             background-color: var(--primary);
             color: var(--text);
-            padding: 2rem 0;
-            text-align: center;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
         }
 
-        .container {
+        .grid-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            perspective: 1000px;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .grid {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            bottom: -50%;
+            left: -50%;
+            background-image: 
+                linear-gradient(to right, rgba(255, 42, 109, 0.15) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 42, 109, 0.15) 1px, transparent 1px);
+            background-size: 50px 50px;
+            transform: rotateX(60deg);
+            transform-origin: center;
+            transform-style: preserve-3d;
+            z-index: -1;
+        }
+
+        .sun {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(to top, var(--neon-pink), #ff9e7a);
+            border-radius: 50%;
+            bottom: -150px;
+            left: calc(50% - 150px);
+            z-index: -2;
+            box-shadow: 0 0 100px rgba(255, 42, 109, 0.8);
+        }
+
+        .content {
+            position: relative;
+            z-index: 10;
+            padding: 4rem 2rem;
             max-width: 1100px;
             margin: 0 auto;
-            padding: 0 2rem;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 4rem;
             font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--text);
+            text-shadow: 
+                0 0 10px var(--neon-blue),
+                0 0 20px var(--neon-blue),
+                0 0 40px var(--neon-blue);
+            animation: pulsate 2s infinite alternate;
         }
 
         .tagline {
-            font-weight: 300;
-            opacity: 0.9;
-            font-size: 1.1rem;
-        }
-
-        main {
-            flex: 1;
-            padding: 4rem 0;
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border: 1px solid var(--border);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-weight: 600;
             font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            color: var(--neon-pink);
+            text-shadow: 0 0 5px var(--neon-pink);
         }
 
-        p {
-            margin-bottom: 1.5rem;
-            color: var(--secondary);
+        .description {
+            max-width: 600px;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
 
-        .resources {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .resource-card {
-            background-color: var(--card-bg);
+        .app-highlight {
+            background: rgba(11, 11, 26, 0.7);
+            border: 1px solid var(--neon-purple);
             border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid var(--border);
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 0 20px rgba(189, 0, 255, 0.3);
+            backdrop-filter: blur(5px);
+            max-width: 500px;
         }
 
-        .resource-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .resource-content {
-            padding: 1.5rem;
-        }
-
-        .resource-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-
-        .resource-description {
-            font-size: 0.95rem;
-            color: var(--secondary);
+        .app-title {
+            font-size: 1.5rem;
+            color: var(--neon-blue);
             margin-bottom: 1rem;
-        }
-
-        .badge {
-            display: inline-block;
-            background-color: rgba(59, 130, 246, 0.1);
-            color: var(--accent);
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 500;
+            text-shadow: 0 0 5px var(--neon-blue);
         }
 
         footer {
-            background-color: var(--primary);
-            color: var(--text);
+            position: absolute;
+            bottom: 0;
+            width: 100%;
             text-align: center;
-            padding: 2rem 0;
-            margin-top: auto;
-        }
-
-        .footer-text {
-            opacity: 0.8;
+            padding: 1rem 0;
             font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
         }
 
-        .accent {
-            color: var(--accent);
+        .cursor-follower {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(
+                circle,
+                rgba(5, 217, 232, 0.2) 0%,
+                rgba(189, 0, 255, 0.1) 50%,
+                transparent 70%
+            );
+            pointer-events: none;
+            z-index: 2;
+            mix-blend-mode: screen;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-trail {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--neon-blue);
+            pointer-events: none;
+            z-index: 3;
+            opacity: 0.7;
+            box-shadow: 0 0 10px var(--neon-blue);
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes pulsate {
+            0% {
+                text-shadow: 
+                    0 0 10px var(--neon-blue),
+                    0 0 20px var(--neon-blue);
+            }
+            100% {
+                text-shadow: 
+                    0 0 15px var(--neon-blue),
+                    0 0 30px var(--neon-blue),
+                    0 0 45px var(--neon-blue);
+            }
         }
 
         @media (max-width: 768px) {
-            .resources {
-                grid-template-columns: 1fr;
+            .logo {
+                font-size: 2.5rem;
             }
             
-            .container {
-                padding: 0 1rem;
+            .tagline {
+                font-size: 1.2rem;
             }
             
-            main {
-                padding: 2rem 0;
+            .description {
+                font-size: 1rem;
+            }
+            
+            .grid {
+                background-size: 30px 30px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">Aaron Moeller</div>
-            <div class="tagline">Developer Resources</div>
+    <div class="cursor-follower"></div>
+    
+    <div class="grid-container">
+        <div class="grid"></div>
+        <div class="sun"></div>
+    </div>
+
+    <div class="content">
+        <h1 class="logo">Aaron Moeller</h1>
+        <div class="tagline">Software Developer</div>
+        
+        <p class="description">
+            Creating intuitive and efficient applications with a focus on user experience and clean design.
+        </p>
+        
+        <div class="app-highlight">
+            <div class="app-title">Tempo Coffee Timer</div>
+            <p>A precision timer application for coffee brewing enthusiasts, designed to enhance the pour-over experience.</p>
         </div>
-    </header>
-
-    <main class="container">
-        <div class="card">
-            <h2>Welcome</h2>
-            <p>This site hosts resources and documentation for applications developed by Aaron Moeller. As a software developer focused on creating intuitive and efficient applications, this space serves as a central hub for app resources, documentation, and other developer assets.</p>
-            <p>The minimalist design of this site reflects my approach to development: clean, functional, and focused on what matters.</p>
-        </div>
-
-        <h2>Project Resources</h2>
-        <div class="resources">
-            <div class="resource-card">
-                <div class="resource-content">
-                    <div class="resource-title">Tempo Coffee Timer</div>
-                    <div class="resource-description">A precision timer application for coffee brewing enthusiasts, designed to enhance the pour-over experience.</div>
-                    <span class="badge">Mobile App</span>
-                </div>
-            </div>
-
-            <div class="resource-card">
-                <div class="resource-content">
-                    <div class="resource-title">Documentation</div>
-                    <div class="resource-description">Technical documentation, user guides, and API references for developer resources.</div>
-                    <span class="badge">Resources</span>
-                </div>
-            </div>
-
-            <div class="resource-card">
-                <div class="resource-content">
-                    <div class="resource-title">Privacy Policies</div>
-                    <div class="resource-description">Privacy policies and terms of service for applications and services.</div>
-                    <span class="badge">Legal</span>
-                </div>
-            </div>
-        </div>
-    </main>
+    </div>
 
     <footer>
-        <div class="container">
-            <p class="footer-text">© <span id="year">2023</span> Aaron Moeller. All rights reserved.</p>
-        </div>
+        <p>© <span id="year">2023</span> Aaron Moeller. All rights reserved.</p>
     </footer>
 
     <script>
         // Update copyright year automatically
         document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Mouse tracking effects
+        const cursorFollower = document.querySelector('.cursor-follower');
+        const content = document.querySelector('.content');
+        const grid = document.querySelector('.grid');
+        
+        // Create cursor trail elements
+        const trailCount = 10;
+        const trails = [];
+        
+        for (let i = 0; i < trailCount; i++) {
+            const trail = document.createElement('div');
+            trail.classList.add('cursor-trail');
+            trail.style.opacity = 1 - (i / trailCount);
+            trail.style.width = trail.style.height = `${10 - (i * 0.5)}px`;
+            document.body.appendChild(trail);
+            trails.push({
+                element: trail,
+                x: 0,
+                y: 0
+            });
+        }
+        
+        // Mouse movement handler
+        document.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            
+            // Update main cursor follower
+            cursorFollower.style.left = `${clientX}px`;
+            cursorFollower.style.top = `${clientY}px`;
+            
+            // Update grid perspective based on mouse position
+            const moveX = (clientX - window.innerWidth / 2) * 0.01;
+            const moveY = (clientY - window.innerHeight / 2) * 0.01;
+            grid.style.transform = `rotateX(60deg) rotateY(${moveX}deg) rotateZ(${moveY}deg)`;
+            
+            // Update the first trail position immediately
+            if (trails.length > 0) {
+                trails[0].x = clientX;
+                trails[0].y = clientY;
+            }
+        });
+        
+        // Animation loop for smooth trail effect
+        function animateTrails() {
+            // Update each trail to follow the previous one with delay
+            for (let i = trails.length - 1; i > 0; i--) {
+                const current = trails[i];
+                const previous = trails[i - 1];
+                
+                // Smooth following with easing
+                current.x += (previous.x - current.x) * 0.3;
+                current.y += (previous.y - current.y) * 0.3;
+                
+                current.element.style.left = `${current.x}px`;
+                current.element.style.top = `${current.y}px`;
+            }
+            
+            // Update the first trail element position
+            if (trails.length > 0) {
+                const first = trails[0];
+                first.element.style.left = `${first.x}px`;
+                first.element.style.top = `${first.y}px`;
+            }
+            
+            requestAnimationFrame(animateTrails);
+        }
+        
+        animateTrails();
+        
+        // Add subtle animation to grid
+        function animateGrid() {
+            const time = Date.now() * 0.001;
+            grid.style.backgroundPosition = `0px ${time * 50}px`;
+            requestAnimationFrame(animateGrid);
+        }
+        
+        animateGrid();
     </script>
 </body>
 </html>
