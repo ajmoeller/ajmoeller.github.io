@@ -117,6 +117,15 @@
             line-height: 1.8;
         }
 
+        .app-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            width: 100%;
+            max-width: 1100px;
+        }
+        
         .app-highlight {
             background: rgba(11, 11, 26, 0.7);
             border: 1px solid var(--neon-purple);
@@ -125,7 +134,27 @@
             margin-top: 2rem;
             box-shadow: 0 0 20px rgba(189, 0, 255, 0.3);
             backdrop-filter: blur(5px);
-            max-width: 500px;
+            max-width: 350px;
+            width: 100%;
+        }
+        
+        .app-coming-soon {
+            border: 1px dashed var(--neon-pink);
+            box-shadow: 0 0 20px rgba(255, 42, 109, 0.3);
+        }
+        
+        .app-status {
+            display: inline-block;
+            background-color: rgba(255, 42, 109, 0.2);
+            color: var(--neon-pink);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 42, 109, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .app-title {
@@ -218,15 +247,23 @@
 
     <div class="content">
         <h1 class="logo">Aaron Moeller</h1>
-        <div class="tagline">Software Developer</div>
+        <div class="tagline">Technology Architect</div>
         
         <p class="description">
-            Creating intuitive and efficient applications with a focus on user experience and clean design.
+            Crafting intelligent systems that seamlessly blend digital innovation with physical reality, creating experiences that transform how we interact with the world.
         </p>
         
-        <div class="app-highlight">
-            <div class="app-title">Tempo Coffee Timer</div>
-            <p>A precision timer application for coffee brewing enthusiasts, designed to enhance the pour-over experience.</p>
+        <div class="app-container">
+            <div class="app-highlight">
+                <div class="app-title">Tempo Coffee Timer</div>
+                <p>A precision timer application for coffee brewing enthusiasts, designed to enhance the pour-over experience.</p>
+            </div>
+            
+            <div class="app-highlight app-coming-soon">
+                <span class="app-status">Coming Soon</span>
+                <div class="app-title">Historical Explorer</div>
+                <p>Discover the hidden stories of any location worldwide. Connect with local history, find fascinating places to visit, and experience the world through a new lens.</p>
+            </div>
         </div>
     </div>
 
