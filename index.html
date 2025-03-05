@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aaron Moeller | Developer Resources</title>
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #334155;
+            --accent: #3b82f6;
+            --text: #f8fafc;
+            --background: #f1f5f9;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--secondary);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: var(--text);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            font-weight: 300;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        main {
+            flex: 1;
+            padding: 4rem 0;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+        }
+
+        .resources {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .resource-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border);
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .resource-content {
+            padding: 1.5rem;
+        }
+
+        .resource-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .resource-description {
+            font-size: 0.95rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: rgba(59, 130, 246, 0.1);
+            color: var(--accent);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        footer {
+            background-color: var(--primary);
+            color: var(--text);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: auto;
+        }
+
+        .footer-text {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .accent {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .resources {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            main {
+                padding: 2rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Aaron Moeller</div>
+            <div class="tagline">Developer Resources</div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="card">
+            <h2>Welcome</h2>
+            <p>This site hosts resources and documentation for applications developed by Aaron Moeller. As a software developer focused on creating intuitive and efficient applications, this space serves as a central hub for app resources, documentation, and other developer assets.</p>
+            <p>The minimalist design of this site reflects my approach to development: clean, functional, and focused on what matters.</p>
+        </div>
+
+        <h2>Project Resources</h2>
+        <div class="resources">
+            <div class="resource-card">
+                <div class="resource-content">
+                    <div class="resource-title">Tempo Coffee Timer</div>
+                    <div class="resource-description">A precision timer application for coffee brewing enthusiasts, designed to enhance the pour-over experience.</div>
+                    <span class="badge">Mobile App</span>
+                </div>
+            </div>
+
+            <div class="resource-card">
+                <div class="resource-content">
+                    <div class="resource-title">Documentation</div>
+                    <div class="resource-description">Technical documentation, user guides, and API references for developer resources.</div>
+                    <span class="badge">Resources</span>
+                </div>
+            </div>
+
+            <div class="resource-card">
+                <div class="resource-content">
+                    <div class="resource-title">Privacy Policies</div>
+                    <div class="resource-description">Privacy policies and terms of service for applications and services.</div>
+                    <span class="badge">Legal</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="footer-text">© <span id="year">2023</span> Aaron Moeller. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Update copyright year automatically
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
